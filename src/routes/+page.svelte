@@ -17,6 +17,7 @@
     <div class="flex gap-x-8 text-xl text-zinc-500 font-semibold items-center">
         <a href="/history" class="hover:text-zinc-300"><i class="bi bi-clock-history"></i> History</a>
         <a href="/expenses" class="hover:text-zinc-300"><i class="bi bi-arrow-up"></i>Expenses</a>
+        <a href="/admin" class="bg-green-500 border-b-2 border-green-700 text-zinc-50 p-2 py-1 rounded-lg">Admin</a>
     </div>
 </header>
 <main class="p-16 text-zinc-50">
