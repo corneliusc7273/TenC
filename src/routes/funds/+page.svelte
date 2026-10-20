@@ -99,9 +99,9 @@
 </div>
 {/if}
 
-<header class="p-16 py-4 border-b-2 border-zinc-800 flex justify-between items-center">
-    <h1 class="text-2xl font-black text-emerald-300"><i class="bi bi-cash"></i> X3Funds</h1>
-    <div class="flex gap-x-8 text-xl text-zinc-500 font-semibold items-center">
+<header class="p-4 md:px-16 py-4 border-b-2 border-zinc-800 flex justify-between items-center">
+    <h1 class="text-xl md:text-2xl font-black text-emerald-300"><i class="bi bi-cash"></i> X3Funds</h1>
+    <div class="gap-x-8 text-xl text-zinc-500 font-semibold items-center md:flex hidden">
         <a href="/funds" class="hover:text-zinc-300"><i class="bi bi-clock-history"></i> History</a>
         <a href="/funds" class="hover:text-zinc-300"><i class="bi bi-arrow-up"></i>Expenses</a>
         {#if isAuthenticated}
@@ -111,26 +111,26 @@
         {/if}
     </div>
 </header>
-<main class="p-16 text-zinc-50">
-    <span class="text-2xl ml-0.5">Class Account</span>
-    <h1 class="text-7xl font-bold mt-2 mb-4"><span class="text-zinc-500">Rp </span>{(data.totalIncome - expense).toLocaleString()}</h1>
-    <span class="text-xl font-light bg-zinc-800 rounded-full px-3 py-1 border-2 text-red-400 border-zinc-700">
+<main class="p-4 md:p-16 text-zinc-50">
+    <span class="text-xl md:text-2xl ml-0.5">Class Account</span>
+    <h1 class="text-5xl md:text-7xl font-bold mt-2 mb-4"><span class="text-zinc-500">Rp </span>{(data.totalIncome - expense).toLocaleString()}</h1>
+    <span class="text-md md:text-xl font-light bg-zinc-800 rounded-full px-3 py-1 border-2 text-red-400 border-zinc-700">
         <span class="text-zinc-500">Expenses:</span> Rp {expense.toLocaleString()}
     </span>
-    <div class="flex gap-x-8">
+    <div class="flex gap-x-4 md:flex-row flex-col">
         <div class="flex-2 mt-16">
             <div class="flex gap-x-2 justify-between bg-zinc-800 p-2 px-4 rounded-xl border border-zinc-700">
-                <h1 class="text-xl font-bold">Accounts</h1>
-                <button onclick={() => isFilter = !isFilter} class:bg-zinc-700={isFilter} class:bg-zinc-800={!isFilter} class="rounded-full px-2 text-lg pr-3 border border-zinc-700 cursor-pointer hover:scale-105 scale-100 duration-150 text-zinc-100"><i class="bi bi-filter"></i> Unpaid</button>
+                <h1 class="text-lg md:text-xl font-bold">Accounts</h1>
+                <button onclick={() => isFilter = !isFilter} class:bg-zinc-700={isFilter} class:bg-zinc-800={!isFilter} class="rounded-full hidden md:inline px-2 text-lg pr-3 border border-zinc-700 cursor-pointer hover:scale-105 scale-100 duration-150 text-zinc-100"><i class="bi bi-filter"></i> Unpaid</button>
             </div>
             <div class="mt-4 flex-2 border border-zinc-700 bg-zinc-800 rounded-xl overflow-hidden">
                 <table class="table-auto border-collapse w-full">
                     <thead>
                         <tr class="border-b-2 border-zinc-700 text-zinc-400">
-                            <th class="text-xl px-4 text-left py-2 rounded-tl">Name</th>   
-                            <th class="text-xl px-4 text-left py-2">Status</th>
+                            <th class="text-lg md:text-xl px-4 text-left py-2 rounded-tl">Name</th>   
+                            <th class="text-lg md:text-xl px-4 text-left py-2">Status</th>
                             {#if isAuthenticated}
-                            <th class="text-xl pl-4 text-right pr-4 py-2">Action</th>
+                            <th class="text-lg md:text-xl pl-4 text-right pr-4 py-2">Action</th>
                             {/if}
                         </tr>
                     </thead>
@@ -138,13 +138,13 @@
                         {#each data.studentTotals as student}
                         {#if (!isFilter) || (isFilter && student.total_paid < cycles*10000)}
                         <tr class="border-b border-zinc-700">
-                            <td class="p-4 text-xl py-4">{student.name}</td>
+                            <td class="p-4 text-md md:text-xl py-4 w-4">{student.name}</td>
                             {#if student.total_paid < cycles*10000}
-                                <td class="p-4 text-xl py-4"><span class="font-bold rounded-full text-xl px-2 py-1 bg-red-900 border-b-2 pr-3 border-red-950"><i class="bi bi-arrow-down"></i> Rp{(cycles*10000-student.total_paid).toLocaleString()} debt</span></td>
+                                <td class="p-4 text-md md:text-xl py-4"><span class="font-bold rounded-full text-md md:text-xl px-2 py-1 bg-red-900 border-b-2 pr-3 border-red-950"><i class="bi bi-arrow-down"></i> Rp{(cycles*10000-student.total_paid).toLocaleString()} debt</span></td>
                             {:else if student.total_paid == cycles*10000 && !isFilter}
-                                <td class="p-4 text-xl py-4"><span class="font-bold rounded-full text-xl px-2 py-1 bg-green-900 border-b-2 pr-3 border-green-950"><i class="bi bi-check"></i> Fully Paid</span></td>
+                                <td class="p-4 text-md md:text-xl py-4"><span class="font-bold rounded-full text-md md:text-xl px-2 py-1 bg-green-900 border-b-2 pr-3 border-green-950"><i class="bi bi-check"></i> Fully Paid</span></td>
                             {:else if student.total_paid > cycles*10000 && !isFilter}
-                                <td class="p-4 text-xl py-4"><span class="font-bold rounded-full text-xl px-2 py-1 bg-blue-900 border-b-2 pr-3 border-blue-950"><i class="bi bi-chevron-double-right"></i> Paid-in-advance</span></td>
+                                <td class="p-4 text-md md:text-xl py-4"><span class="font-bold rounded-full text-md md:text-xl px-2 py-1 bg-blue-900 border-b-2 pr-3 border-blue-950"><i class="bi bi-chevron-double-right"></i> Paid-in-advance</span></td>
                             {/if}
                             {#if isAuthenticated}
                             <td class="p-3 items-center flex justify-end">
